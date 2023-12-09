@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Conta\" />
     <Folder Include="Notificacao\" />
-    <Folder Include="Transacao\" />
   </ItemGroup>
 
 </Project>

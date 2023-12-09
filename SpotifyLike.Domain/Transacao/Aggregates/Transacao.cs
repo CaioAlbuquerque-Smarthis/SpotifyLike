@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SpotifyLike.Domain.Core.ValueObject;
 
-namespace SpotifyLike.Domain.Streaming.Aggregates
+namespace SpotifyLike.Domain.Transacao.Aggregates
 {
-    public class Plano
+    public class Transacao
     {
         public Guid Id { get; set; }
-        public String Nome { get; set; }
-        public String Descricao { get; set; }
+        public DateTime DtTransacao { get; set; }
         public Monetario Valor { get; set; }
-    }
+        public String Descricao { get; set; }
+     }
 }
