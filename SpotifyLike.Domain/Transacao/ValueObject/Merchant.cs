@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpotifyLike.Domain.Transacao.ValueObject
 {
-    internal class Merchant
+    public class Merchant
     {
         public string Nome { get; set; }
     }
