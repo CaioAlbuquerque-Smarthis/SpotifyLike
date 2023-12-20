@@ -4,8 +4,10 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyLike.Domain.Conta.Aggregates;
 using SpotifyLike.Domain.Core.ValueObject;
 using SpotifyLike.Domain.Transacao.ValueObject;
+using SpotifyLike.Domain.Notificacao.Aggregates;
 
 namespace SpotifyLike.Domain.Transacao.Aggregates
 {
@@ -19,12 +21,15 @@ namespace SpotifyLike.Domain.Transacao.Aggregates
         public Monetario Limite { get; set; }
         public String Numero { get; set; }
         public List<Transacao> Transacoes { get; set; } = new List<Transacao>();
+        public DateTime DataVencimento { get; set; }
+        public Usuario Usuario {  get; set; }
         public void CriarTransacao(Merchant merchant, Monetario valor, string Descricao = "")
         {
             //Verificar se o cartão está ativo
             this.IsCartaoAtivo();
 
             Transacao transacao = new Transacao();
+            //transacao.UsuarioDestino = usuarioDestino;
             transacao.Merchant = merchant;
             transacao.Valor = valor;
             transacao.Descricao = Descricao;
@@ -38,6 +43,13 @@ namespace SpotifyLike.Domain.Transacao.Aggregates
 
             //Cria numero de autorizacao
             transacao.Id = Guid.NewGuid();
+
+            //Criar Notificação
+            //Notificacao.Aggregates.Notificacao.Criar($"Notificação da transação {transacao.Id.ToString}", $"Notificação referente a transação {Descricao}", TipoNotificacao.Usuario, usuarioDestino, Usuario);
+            //Notificacao.Aggregates.Notificacao notificacao = new Notificacao.Aggregates.Notificacao();
+            Notificacao.Aggregates.Notificacao notificacao = new Notificacao.Aggregates.Notificacao();
+            notificacao = Notificacao.Aggregates.Notificacao.Criar($"Notificação de transação realizada", $"Notificação referente a transação {Descricao}", TipoNotificacao.Sistema, this.Usuario);
+            //this.Usuario.Notificacoes.Add(notificacao);
 
             //Diminui o limite com o valor da transação
             this.Limite.Valor = this.Limite.Valor - transacao.Valor;

@@ -24,16 +24,19 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         public List<Assinatura> Assinaturas { get; set;} = new List<Assinatura>();
 
         public List<Playlist> Playlists { get; set; } = new List<Playlist>();
+        public List<Banda> BandasFavoritas { get; set; }
 
         public List<Notificacao.Aggregates.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Aggregates.Notificacao>();
+
+        //public Notificacao.Aggregates.Notificacao notificacao { get; set; } = new Notificacao.Aggregates.Notificacao();
 
         public void CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
         {
             this.Nome = nome;
             this.Email = email;
 
-            //Todo: Criptografar a senha
-            this.Senha = this.CriptografarSenha(senha);
+            //Todo: Transformar a senha em hash
+            this.Senha = this.HashSenha(senha);
 
             this.DtNascimento = dtNascimento;
 
@@ -47,14 +50,30 @@ namespace SpotifyLike.Domain.Conta.Aggregates
             this.CriarPlaylist(nome: NOME_PLAYLIST, publica: false);
         }
 
-        public void CriarPlaylist(string nome, bool publica = true)
+        private void DesativarCartao(Cartao cartao)
+        {
+            cartao.Ativo = false;
+        }
+
+        private void AtivarCartao(Cartao cartao)
+        {
+            cartao.Ativo = true;
+        }
+
+        private void AdicionarBandaFavorita(Banda banda)
+        {
+            this.BandasFavoritas.Add(banda);
+        }
+
+        public void CriarPlaylist(string nome, bool publica = true, bool favorita = false)
         {
             this.Playlists.Add(new Playlist()
             {
                 Nome = nome,
                 Publica = false,
                 DtCriacao = DateTime.Now,
-                Usuario = this
+                Usuario = this,
+                Favorita = favorita
             });
         }
 
@@ -100,6 +119,15 @@ namespace SpotifyLike.Domain.Conta.Aggregates
             var criptoResult = criptoProvider.ComputeHash(btexto);
 
             return Convert.ToHexString(criptoResult);
+        }
+        private String HashSenha(string senhaAberta)
+        {
+            //Bcript seria a melhor biblioteca pra armazenar senha
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(10);
+
+            string hash = BCrypt.Net.BCrypt.HashPassword(senhaAberta, salt);
+
+            return hash;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyLike.Domain.Conta.Aggregates;
 using SpotifyLike.Domain.Core.ValueObject;
 using SpotifyLike.Domain.Transacao.ValueObject;
 
@@ -17,6 +18,7 @@ namespace SpotifyLike.Domain.Transacao.Aggregates
         public Monetario Valor { get; set; }
         public String Descricao { get; set; }
         public Merchant Merchant { get; set; }
+        public Usuario UsuarioDestino { get; set; }
 
 
 

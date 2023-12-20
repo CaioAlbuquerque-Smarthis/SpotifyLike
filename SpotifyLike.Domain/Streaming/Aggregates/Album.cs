@@ -14,7 +14,7 @@ namespace SpotifyLike.Domain.Streaming.Aggregates
 
         public void AdicionarMusica(Musica musica) =>
             this.Musica.Add(musica);
-        public void AdicionarMusica(List<Musica> musica) =>
+        public void AdicionarMusicas(List<Musica> musica) =>
             this.Musica.AddRange(musica);
 
     }

@@ -16,6 +16,11 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         public Usuario Usuario { get; set; }
         public List<Musica> Musicas { get; set; }
         public DateTime DtCriacao { get; set; }
+        public Boolean Favorita { get; set; }
 
+        public void AdicionarMusica(Musica musica) =>
+            this.Musicas.Add(musica);
+        public void AdicionarMusicas(List<Musica> musica) =>
+            this.Musicas.AddRange(musica);
     }
 }

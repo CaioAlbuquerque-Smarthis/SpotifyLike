@@ -14,5 +14,7 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         public DateTime DtAtivacao{ get; set; }
         public Boolean Ativo { get; set; }
 
+        public DateTime DtVencimento { get; set; }
+
     }
 }

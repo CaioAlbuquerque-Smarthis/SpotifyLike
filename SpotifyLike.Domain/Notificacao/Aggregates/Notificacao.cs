@@ -25,7 +25,7 @@ namespace SpotifyLike.Domain.Notificacao.Aggregates
         public TipoNotificacao TipoNotificacao { get; set; }
 
 
-        public Notificacao Criar(string titulo, string mensagem, TipoNotificacao tipoNotificacao, Usuario destino, Usuario remetente = null)
+        public static Notificacao Criar(string titulo, string mensagem, TipoNotificacao tipoNotificacao, Usuario destino, Usuario remetente = null)
         {
             if (tipoNotificacao == TipoNotificacao.Usuario && remetente == null)
                 throw new ArgumentNullException("Para tipo de mensagem 'usuário', você deve informar quem foi o remetente");
