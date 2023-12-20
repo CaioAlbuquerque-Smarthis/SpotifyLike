@@ -1,7 +1,10 @@
-﻿using SpotifyLike.Domain.Transacao.Aggregates;
+﻿using SpotifyLike.Domain.Conta.Aggregates;
+using SpotifyLike.Domain.Streaming.Aggregates;
+using SpotifyLike.Domain.Transacao.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +15,8 @@ namespace SpotifyLike.Tests.Domain
         [Fact]
         public void DeveCriarTransacaoComSucesso()
         {
+
+
             Cartao cartao = new Cartao()
             {
                 Id = Guid.NewGuid(),
@@ -20,6 +25,22 @@ namespace SpotifyLike.Tests.Domain
                 Numero = "646326472364238"
             };
 
+            Plano plano = new Plano()
+            {
+                Descricao = "Lorem ipsum",
+                Id = Guid.NewGuid(),
+                Nome = "Plano Dummy",
+                Valor = 19.90M
+            };
+
+            string nome = "Dummy Usuario";
+            string email = "teste@teste.com";
+            string senha = "123456";
+
+            //Act
+            Usuario usuario = new Usuario();
+            usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
+
             var merchant = new SpotifyLike.Domain.Transacao.ValueObject.Merchant()
             {
                 Nome = "Dummy"
@@ -27,11 +48,11 @@ namespace SpotifyLike.Tests.Domain
 
             cartao.CriarTransacao(merchant, 19M, "Dummy Transacao");
             Assert.True(cartao.Transacoes.Count > 0);
-            Assert.True(cartao.Limite == 981M);
+            Assert.True(cartao.Limite == 961.10M);
         }
 
         [Fact]
-        public void NaoDeveCriarTransacaoComCartaoInativo()
+        public void NaoDeveAssinarPlanoComCartaoInativo()
         {
             Cartao cartao = new Cartao()
             {
@@ -41,17 +62,32 @@ namespace SpotifyLike.Tests.Domain
                 Numero = "6465465466",
             };
 
+            Plano plano = new Plano()
+            {
+                Descricao = "Lorem ipsum",
+                Id = Guid.NewGuid(),
+                Nome = "Plano Dummy",
+                Valor = 19.90M
+            };
+
+            string nome = "Dummy Usuario";
+            string email = "teste@teste.com";
+            string senha = "123456";
+
+            //Act
+            Usuario usuario = new Usuario();
+            Assert.Throws<System.Exception>(
+                () => usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao));
+
             var merchant = new SpotifyLike.Domain.Transacao.ValueObject.Merchant()
             {
                 Nome = "Dummy"
             };
 
-            Assert.Throws<System.Exception>(
-                () => cartao.CriarTransacao(merchant, 19M, "Dummy Transacao"));
         }
 
         [Fact]
-        public void NaoDeveCriarTransacaoComCartaoSemLimite()
+        public void NaoDeveAssinarPlanoComCartaoSemLimite()
         {
             Cartao cartao = new Cartao()
             {
@@ -61,13 +97,60 @@ namespace SpotifyLike.Tests.Domain
                 Numero = "6465465466",
             };
 
+            Plano plano = new Plano()
+            {
+                Descricao = "Lorem ipsum",
+                Id = Guid.NewGuid(),
+                Nome = "Plano Dummy",
+                Valor = 19.90M
+            };
+
+            string nome = "Dummy Usuario";
+            string email = "teste@teste.com";
+            string senha = "123456";
+
+            //Act
+            Usuario usuario = new Usuario();
+            Assert.Throws<System.Exception>(
+                () => usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao));
+
+
+        }
+
+        [Fact]
+        public void NaoDeveCriarTransacaoComCartaoSemLimite()
+        {
+            Cartao cartao = new Cartao()
+            {
+                Id = Guid.NewGuid(),
+                Ativo = true,
+                Limite = 20M,
+                Numero = "6465465466",
+            };
+
+            Plano plano = new Plano()
+            {
+                Descricao = "Lorem ipsum",
+                Id = Guid.NewGuid(),
+                Nome = "Plano Dummy",
+                Valor = 19.90M
+            };
+
+            string nome = "Dummy Usuario";
+            string email = "teste@teste.com";
+            string senha = "123456";
+
+            //Act
+            Usuario usuario = new Usuario();
+            usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
+
             var merchant = new SpotifyLike.Domain.Transacao.ValueObject.Merchant()
             {
                 Nome = "Dummy"
             };
 
             Assert.Throws<System.Exception>(
-                () => cartao.CriarTransacao(merchant, 19M, "Dummy Transacao"));
+            () => cartao.CriarTransacao(merchant, 19M, "Dummy Transacao"));
         }
 
         [Fact]
@@ -80,6 +163,22 @@ namespace SpotifyLike.Tests.Domain
                 Limite = 1000M,
                 Numero = "6465465466",
             };
+
+            Plano plano = new Plano()
+            {
+                Descricao = "Lorem ipsum",
+                Id = Guid.NewGuid(),
+                Nome = "Plano Dummy",
+                Valor = 19.90M
+            };
+
+            string nome = "Dummy Usuario";
+            string email = "teste@teste.com";
+            string senha = "123456";
+
+            //Act
+            Usuario usuario = new Usuario();
+            usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
 
             cartao.Transacoes.Add(new SpotifyLike.Domain.Transacao.Aggregates.Transacao()
             {
@@ -113,6 +212,22 @@ namespace SpotifyLike.Tests.Domain
                 Limite = 1000M,
                 Numero = "6465465466",
             };
+
+            Plano plano = new Plano()
+            {
+                Descricao = "Lorem ipsum",
+                Id = Guid.NewGuid(),
+                Nome = "Plano Dummy",
+                Valor = 19.90M
+            };
+
+            string nome = "Dummy Usuario";
+            string email = "teste@teste.com";
+            string senha = "123456";
+
+            //Act
+            Usuario usuario = new Usuario();
+            usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
 
             cartao.Transacoes.Add(new SpotifyLike.Domain.Transacao.Aggregates.Transacao()
             {

@@ -49,12 +49,17 @@ namespace SpotifyLike.Domain.Transacao.Aggregates
             //Notificacao.Aggregates.Notificacao notificacao = new Notificacao.Aggregates.Notificacao();
             Notificacao.Aggregates.Notificacao notificacao = new Notificacao.Aggregates.Notificacao();
             notificacao = Notificacao.Aggregates.Notificacao.Criar($"Notificação de transação realizada", $"Notificação referente a transação {Descricao}", TipoNotificacao.Sistema, this.Usuario);
-            //this.Usuario.Notificacoes.Add(notificacao);
+            this.Usuario.Notificacoes.Add(notificacao);
 
             //Diminui o limite com o valor da transação
             this.Limite.Valor = this.Limite.Valor - transacao.Valor;
 
             this.Transacoes.Add(transacao);
+        }
+
+        public void AssociarUsuario(Usuario usuario)
+        {
+            this.Usuario = usuario;
         }
 
         private void ValidarTransacao(Transacao transacao)

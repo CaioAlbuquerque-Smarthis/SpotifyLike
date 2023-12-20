@@ -24,11 +24,9 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         public List<Assinatura> Assinaturas { get; set;} = new List<Assinatura>();
 
         public List<Playlist> Playlists { get; set; } = new List<Playlist>();
-        public List<Banda> BandasFavoritas { get; set; }
+        public List<Banda> BandasFavoritas { get; set; } = new List<Banda>();
 
         public List<Notificacao.Aggregates.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Aggregates.Notificacao>();
-
-        //public Notificacao.Aggregates.Notificacao notificacao { get; set; } = new Notificacao.Aggregates.Notificacao();
 
         public void CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
         {
@@ -40,11 +38,14 @@ namespace SpotifyLike.Domain.Conta.Aggregates
 
             this.DtNascimento = dtNascimento;
 
-            //Assinar um plano
-            this.AssinarPlano(plano, cartao);
-
             //Adicionar cartão na conta do usuário
             this.AdicionarCartao(cartao);
+
+            //Associa usuário criado ao cartão
+            cartao.AssociarUsuario(this);
+
+            //Assinar um plano
+            this.AssinarPlano(plano, cartao);
 
             //Criar a playlist padrão do usuário
             this.CriarPlaylist(nome: NOME_PLAYLIST, publica: false);
@@ -55,12 +56,12 @@ namespace SpotifyLike.Domain.Conta.Aggregates
             cartao.Ativo = false;
         }
 
-        private void AtivarCartao(Cartao cartao)
+        public void AtivarCartao(Cartao cartao)
         {
             cartao.Ativo = true;
         }
 
-        private void AdicionarBandaFavorita(Banda banda)
+        public void AdicionarBandaFavorita(Banda banda)
         {
             this.BandasFavoritas.Add(banda);
         }
@@ -75,6 +76,15 @@ namespace SpotifyLike.Domain.Conta.Aggregates
                 Usuario = this,
                 Favorita = favorita
             });
+        }
+
+        public void AdicionarPlaylist(Playlist playlist)
+        {
+            if (playlist.Publica == false)
+            {
+                throw new ArgumentException("Playlist pulbica não pode ser adicionada ao usuário");
+            }
+            this.Playlists.Add(playlist);
         }
 
         private void AdicionarCartao(Cartao cartao)
