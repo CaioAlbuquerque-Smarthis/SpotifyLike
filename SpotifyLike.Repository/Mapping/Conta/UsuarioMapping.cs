@@ -23,7 +23,7 @@ namespace SpotifyLike.Repository.Mapping.Conta
             builder.Property(x => x.Senha).IsRequired().HasMaxLength(100);
             builder.Property(x => x.DtNascimento).IsRequired();
 
-            builder.HasMany(x => x.Cartoes).WithOne();
+            builder.HasMany(x => x.Cartoes).WithOne().OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(x => x.Assinaturas).WithOne();
             builder.HasMany(x => x.Playlists).WithOne(x => x.Usuario);
 
