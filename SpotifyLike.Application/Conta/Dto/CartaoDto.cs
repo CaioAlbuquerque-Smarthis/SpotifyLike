@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotify.Application.Conta.Dto
+namespace SpotifyLike.Application.Conta.Dto
 {
     public class CartaoDto
     {

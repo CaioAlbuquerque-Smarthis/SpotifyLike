@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Spotify.Application.Conta.Dto
+namespace SpotifyLike.Application.Conta.Dto
 {
     public class UsuarioDto
     {

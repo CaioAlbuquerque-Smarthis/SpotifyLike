@@ -1,4 +1,4 @@
-﻿using Spotify.Application.Conta.Dto;
+﻿using SpotifyLike.Application.Conta.Dto;
 using SpotifyLike.Domain.Conta.Aggregates;
 using SpotifyLike.Domain.Transacao.Aggregates;
 using System;
