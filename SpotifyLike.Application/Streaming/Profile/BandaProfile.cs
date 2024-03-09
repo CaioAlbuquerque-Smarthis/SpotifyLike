@@ -1,4 +1,4 @@
-﻿using Spotify.Application.Streaming.Dto;
+﻿using SpotifyLike.Application.Streaming.Dto;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using System;
 using System.Collections.Generic;

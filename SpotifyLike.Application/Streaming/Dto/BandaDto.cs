@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotify.Application.Streaming.Dto
+namespace SpotifyLike.Application.Streaming.Dto
 {
     public class BandaDto
     {

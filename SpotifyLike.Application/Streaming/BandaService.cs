@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Spotify.Application.Streaming.Dto;
+using SpotifyLike.Application.Streaming.Dto;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Repository.Repository;
 using System;
