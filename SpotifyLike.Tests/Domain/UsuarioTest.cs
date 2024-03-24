@@ -175,7 +175,7 @@ namespace SpotifyLike.Tests.Domain
                 Favorita = false
             };
             
-            playlist.AdicionarMusica(musica);
+            //playlist.AdicionarMusica(musica);
         }
 
         [Fact]
@@ -220,7 +220,7 @@ namespace SpotifyLike.Tests.Domain
                 Favorita = false
             };
 
-            playlist.AdicionarMusica(musica);
+            //playlist.AdicionarMusica(musica);
 
             usuario.AdicionarPlaylist(playlist);
 

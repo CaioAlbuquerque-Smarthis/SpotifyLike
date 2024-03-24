@@ -20,9 +20,9 @@ namespace SpotifyLike.Domain.Transacao.Aggregates
         public Boolean Ativo { get; set; }
         public Monetario Limite { get; set; }
         public String Numero { get; set; }
-        public List<Transacao> Transacoes { get; set; } = new List<Transacao>();
+        public virtual IList<Transacao> Transacoes { get; set; } = new List<Transacao>();
         public DateTime DataVencimento { get; set; }
-        public Usuario Usuario {  get; set; }
+        public virtual Usuario Usuario {  get; set; }
         public void CriarTransacao(Merchant merchant, Monetario valor, string Descricao = "")
         {
             //Verificar se o cartão está ativo

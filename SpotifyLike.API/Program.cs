@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Spotify.Application.Conta;
+using Spotify.Application.Conta.Profile;
+using Spotify.Application.Streaming;
+using SpotifyLike.Application.Conta;
 using SpotifyLike.Repository;
+using SpotifyLike.Repository.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +17,22 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<SpotifyLikeContext>(c =>
 {
-
-    c.UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnection"));
+    c.UseLazyLoadingProxies()
+     .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnection"));
 
 });
+
+builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
+
+
+//Repositories
+builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<PlanoRepository>();
+builder.Services.AddScoped<BandaRepository>();
+
+//Services
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<BandaService>();
 
 var app = builder.Build();
 

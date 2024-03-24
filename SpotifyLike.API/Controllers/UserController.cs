@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using SpotifyLike.Application.Conta;
 using SpotifyLike.Application.Conta.Dto;
@@ -39,6 +40,25 @@ namespace SpotifyLike.Api.Controllers
 
             return Ok(result);
 
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] Request.LoginRequest login)
+        {
+            if (ModelState.IsValid == false)
+                return BadRequest();
+
+            var result = this._usuarioService.Autenticar(login.Email, login.Senha);
+
+            if (result == null)
+            {
+                return BadRequest(new
+                {
+                    Error = "email ou senha inválidos"
+                });
+            }
+
+            return Ok(result);
         }
 
     }

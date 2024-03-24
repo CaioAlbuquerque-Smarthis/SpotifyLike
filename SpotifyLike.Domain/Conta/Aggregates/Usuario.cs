@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
+using SpotifyLike.Domain.Core.Extension;
 
 namespace SpotifyLike.Domain.Conta.Aggregates
 {
@@ -20,13 +21,13 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         public string Email { get; set; }
         public string Senha { get; set; }
         public DateTime DtNascimento { get; set; }
-        public List<Cartao> Cartoes { get; set; } = new List<Cartao>();
-        public List<Assinatura> Assinaturas { get; set;} = new List<Assinatura>();
+        public virtual IList<Cartao> Cartoes { get; set; } = new List<Cartao>();
+        public virtual IList<Assinatura> Assinaturas { get; set;} = new List<Assinatura>();
 
-        public List<Playlist> Playlists { get; set; } = new List<Playlist>();
-        public List<Banda> BandasFavoritas { get; set; } = new List<Banda>();
+        public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
+        public virtual IList<Banda> BandasFavoritas { get; set; } = new List<Banda>();
 
-        public List<Notificacao.Aggregates.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Aggregates.Notificacao>();
+        public virtual IList<Notificacao.Aggregates.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Aggregates.Notificacao>();
 
         public void CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
         {
@@ -94,7 +95,7 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         {
             //Debitar o valor do plano no cartao
 
-            cartao.CriarTransacao(new Transacao.ValueObject.Merchant() { Nome = plano.Nome }, new Core.ValueObject.Monetario(plano.Valor), plano.Descricao);
+            cartao.CriarTransacao(new Transacao.ValueObject.Merchant() { Nome = plano.Nome, Email = "spotifylike@test.com" }, new Core.ValueObject.Monetario(plano.Valor), plano.Descricao);
 
             //Desativo caso tenha alguma assinatura ativa
             DesativarAssinaturaAtiva();
@@ -117,27 +118,9 @@ namespace SpotifyLike.Domain.Conta.Aggregates
                 planoAtivo.Ativo = false;
             }
         }
-
-        private String CriptografarSenha(string senhaAberta)
-        {
-            //Bcript seria a melhor biblioteca pra armazenar senha
-
-            SHA256 criptoProvider = SHA256.Create();
-
-            byte[] btexto = Encoding.UTF8.GetBytes(senhaAberta);
-
-            var criptoResult = criptoProvider.ComputeHash(btexto);
-
-            return Convert.ToHexString(criptoResult);
-        }
         private String HashSenha(string senhaAberta)
         {
-            //Bcript seria a melhor biblioteca pra armazenar senha
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(10);
-
-            string hash = BCrypt.Net.BCrypt.HashPassword(senhaAberta, salt);
-
-            return hash;
+            return senhaAberta.HashSHA256();
         }
     }
 }

@@ -13,14 +13,9 @@ namespace SpotifyLike.Domain.Conta.Aggregates
         public Guid Id { get; set; }
         public string Nome { get; set; }
         public Boolean Publica { get; set; }
-        public Usuario Usuario { get; set; }
-        public List<Musica> Musicas { get; set; } = new List<Musica>();
+        public virtual Usuario Usuario { get; set; }
+        public virtual IList<Musica> Musicas { get; set; }
         public DateTime DtCriacao { get; set; }
         public Boolean Favorita { get; set; }
-
-        public void AdicionarMusica(Musica musica) =>
-            this.Musicas.Add(musica);
-        public void AdicionarMusicas(List<Musica> musica) =>
-            this.Musicas.AddRange(musica);
     }
 }
