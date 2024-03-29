@@ -7,17 +7,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Router } from '@angular/router';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormControl, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, HttpClientModule, CommonModule, FlexLayoutModule],
+  imports: [MatButtonModule, MatCardModule, HttpClientModule, CommonModule, FlexLayoutModule
+            , MatFormFieldModule, FormsModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 
   bandas = null
+  searchBanda = new FormControl('', [Validators.required]);
 
   constructor(private bandaService: BandaService, private router:Router) {
   }

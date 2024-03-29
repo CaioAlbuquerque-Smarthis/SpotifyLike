@@ -18,7 +18,8 @@ namespace SpotifyLike.Domain.Transacao.Aggregates
         public Monetario Valor { get; set; }
         public String Descricao { get; set; }
         public Merchant Merchant { get; set; }
-        public virtual Usuario UsuarioDestino { get; set; }
+        //Coloco virtual no merchant?
+        //public virtual Usuario UsuarioDestino { get; set; }
 
 
 

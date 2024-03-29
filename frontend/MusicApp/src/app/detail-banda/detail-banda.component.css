@@ -1,0 +1,4 @@
+.banda-imagem {
+    max-width: 400px; /* Define a largura máxima da imagem */
+    height: 400px; /* Garante que a altura seja ajustada proporcionalmente */
+}
