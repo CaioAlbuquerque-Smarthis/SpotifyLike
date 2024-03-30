@@ -1,4 +1,12 @@
 <div class="content">
+  <div class="spacer"></div>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Busque por uma banda</mat-label>
+      <input matInput placeholder="Simple Plan">
+    </mat-form-field>
+  </form>
+  <button mat-raised-button color="primary" (click)="search();">Buscar</button>
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
       <div fxFlex="50%"
            fxFlex.xs="100%"

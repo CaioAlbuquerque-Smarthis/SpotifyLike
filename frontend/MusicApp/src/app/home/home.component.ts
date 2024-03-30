@@ -9,12 +9,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { Router } from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormControl, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [MatButtonModule, MatCardModule, HttpClientModule, CommonModule, FlexLayoutModule
-            , MatFormFieldModule, FormsModule, ReactiveFormsModule],
+            , MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -35,5 +36,8 @@ export class HomeComponent implements OnInit {
   public goToDetail(item:Banda){
     this.router.navigate(["detail", item.id]);
   }
+  public search(){
 
+        this.router.navigate(["/home"]);
+  };
 }
