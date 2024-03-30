@@ -21,9 +21,7 @@ export class LoginComponent {
   errorMessage = '';
   usuario!: Usuario;
 
-  constructor(private usuarioService: UsuarioService, private router: Router){
-
-  }
+  constructor(private usuarioService: UsuarioService, private router: Router){}
 
   public login(){
     if (this.email.invalid || this.senha.invalid){

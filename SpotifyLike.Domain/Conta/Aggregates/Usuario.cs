@@ -49,7 +49,7 @@ namespace SpotifyLike.Domain.Conta.Aggregates
             this.AssinarPlano(plano, cartao);
 
             //Criar a playlist padrão do usuário
-            this.CriarPlaylist(nome: NOME_PLAYLIST, publica: false);
+            this.CriarPlaylist(nome: NOME_PLAYLIST, publica: false, favorita: true);
         }
 
         private void DesativarCartao(Cartao cartao)

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   bandas = null
   searchBanda = new FormControl('', [Validators.required]);
+  searchText: string = '';
 
   constructor(private bandaService: BandaService, private router:Router) {
   }
@@ -36,8 +37,9 @@ export class HomeComponent implements OnInit {
   public goToDetail(item:Banda){
     this.router.navigate(["detail", item.id]);
   }
+
   public search(){
 
-        this.router.navigate(["/home"]);
+        this.router.navigate(["busca", this.searchText]);
   };
 }

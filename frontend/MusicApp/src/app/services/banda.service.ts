@@ -21,6 +21,10 @@ export class BandaService {
     return this.httpClient.get<Banda>(`${this.url}/${id}`)
   }
 
+  public getBandaPorNome(nome: string) : Observable<Banda> {
+    return this.httpClient.get<Banda>(`${this.url}/buscarBanda/${nome}`)
+  }
+
   public getAlbunsBanda(id: string) : Observable<Album[]>{
     return this.httpClient.get<Album[]>(`${this.url}/${id}/albums`);
 

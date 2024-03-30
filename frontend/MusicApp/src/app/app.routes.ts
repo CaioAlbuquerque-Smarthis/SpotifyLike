@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DetailBandaComponent } from './detail-banda/detail-banda.component';
 import { LoginComponent } from './login/login.component';
+import { BuscaBandaComponent } from './busca-banda/busca-banda.component';
 
 export const routes: Routes = [
     {
@@ -15,5 +16,9 @@ export const routes: Routes = [
     {
         path: 'detail/:id',
         component: DetailBandaComponent
+    },
+    {
+        path: 'busca/:nome',
+        component: BuscaBandaComponent
     }
 ];

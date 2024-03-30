@@ -40,6 +40,19 @@ namespace SpotifyLike.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("buscarBanda/{nome}")]
+        public IActionResult BuscarBanda(string nome)
+        {
+            var result = this._bandaService.BuscarPorNome(nome);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
         [HttpPost]
         public IActionResult Criar([FromBody] BandaDto dto)
         {

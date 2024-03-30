@@ -45,7 +45,7 @@ namespace SpotifyLike.Repository
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
-            return this.Context.Set<T>().Where(expression);
+            return this.Context.Set<T>().Where(expression).ToList();
         }
 
         public bool Exists(Expression<Func<T, bool>> expression)

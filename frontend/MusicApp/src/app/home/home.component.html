@@ -3,7 +3,8 @@
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Busque por uma banda</mat-label>
-      <input matInput placeholder="Simple Plan">
+      <input matInput placeholder="Simple Plan"
+      [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
   <button mat-raised-button color="primary" (click)="search();">Buscar</button>

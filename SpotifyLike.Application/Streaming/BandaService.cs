@@ -36,6 +36,12 @@ namespace Spotify.Application.Streaming
             return this.Mapper.Map<BandaDto>(banda);
         }
 
+        public IEnumerable<BandaDto> BuscarPorNome(string nome)
+        {
+            var banda = this.BandaRepository.Find(x => x.Nome.Contains(nome));
+            return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
+        }
+
         public IEnumerable<BandaDto> Obter()
         {
             var banda = this.BandaRepository.GetAll();
