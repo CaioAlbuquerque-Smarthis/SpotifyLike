@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Route } from '@angular/router';
 import { Banda } from '../model/banda';
 import { BandaService } from '../services/banda.service';
-import { Album } from '../model/album';
+import { Album, Musica } from '../model/album';
 import { CommonModule } from '@angular/common';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-detail-banda',
   standalone: true,
-  imports: [MatExpansionModule, CommonModule],
+  imports: [MatExpansionModule, CommonModule, MatIconModule],
   templateUrl: './detail-banda.component.html',
   styleUrl: './detail-banda.component.css'
 })
@@ -35,5 +36,11 @@ export class DetailBandaComponent implements OnInit {
     });
 
   }
+
+  public favoritar(idMusica:string)
+  {
+
+  }
+
 
 }

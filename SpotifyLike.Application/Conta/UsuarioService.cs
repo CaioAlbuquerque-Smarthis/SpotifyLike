@@ -65,5 +65,22 @@ namespace SpotifyLike.Application.Conta
             var result = this.Mapper.Map<UsuarioDto>(usuario);
             return result;
         }
+
+        public UsuarioDto Favoritar(Guid idMusica, Guid idUsuario)
+        {
+            var usuario = this.UsuarioRepository.GetById(idUsuario);
+            var musica = BandaRepository
+            //Criar a transformação de musicaDto pra Musica aí declarar a musica e usar ela no adicionar musica
+            if (usuario.Playlists.Any(playlist => playlist.Favorita 
+                    && playlist.Musicas.Any(m => m.Id == idMusica))) 
+            {
+                return this.Mapper.Map<UsuarioDto>(usuario);
+            }
+            else 
+            {
+                usuario.Playlists.FirstOrDefault(playlist  => playlist.Favorita)
+                    .AdicionarMusica(idMusica)
+            };
+        }
     }
 }

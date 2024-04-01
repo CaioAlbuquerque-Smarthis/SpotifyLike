@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using SpotifyLike.Application.Conta;
 using SpotifyLike.Application.Conta.Dto;
+using SpotifyLike.Application.Streaming.Dto;
 using SpotifyLike.Domain.Conta.Aggregates;
 
 namespace SpotifyLike.Api.Controllers
@@ -59,6 +60,12 @@ namespace SpotifyLike.Api.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPost("favoritar/{idMusica}")]
+        public IActionResult Favoritar([FromBody] MusicaDto musicaDto, Guid idUsuario) 
+        {
+            return 
         }
 
     }

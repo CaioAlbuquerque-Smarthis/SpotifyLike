@@ -12,6 +12,11 @@
                Album: {{album.nome}}
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p *ngFor="let music of album.musicas">Musica: {{music.nome}}</p>
+        <div *ngFor="let music of album.musicas">
+            <p>Musica: {{music.nome}}</p>
+            <button mat-icon-button color="primary" (click)="favoritar(music.id ?? '')">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </mat-expansion-panel>
 </mat-accordion>
