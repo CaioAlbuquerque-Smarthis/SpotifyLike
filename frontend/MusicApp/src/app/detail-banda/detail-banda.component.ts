@@ -6,6 +6,8 @@ import { Album, Musica } from '../model/album';
 import { CommonModule } from '@angular/common';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { UsuarioService } from '../services/usuario.service';
+import { Usuario } from '../model/usuario';
 
 
 @Component({
@@ -20,8 +22,9 @@ export class DetailBandaComponent implements OnInit {
   idBanda = '';
   banda !: Banda;
   albuns !: Album[];
+  idUsuario = JSON.parse(sessionStorage.getItem('user') || '{}').id;
 
-  constructor(private route: ActivatedRoute, private bandaService: BandaService){}
+  constructor(private route: ActivatedRoute, private bandaService: BandaService, private usuarioService: UsuarioService){}
 
   ngOnInit(): void {
     this.idBanda = this.route.snapshot.params["id"];
@@ -37,9 +40,17 @@ export class DetailBandaComponent implements OnInit {
 
   }
 
-  public favoritar(idMusica:string)
+  public favoritar(idMusica: string, nomeMusica: String, duracaoMusica: string)
   {
-
+    this.usuarioService.favoritar(idMusica, nomeMusica, duracaoMusica, this.idUsuario ?? '')
+    .subscribe(
+      (response: Usuario) => {
+        console.log('Favoritado com sucesso:', response);
+      },
+      (error) => {
+        console.error('Erro ao favoritar:', error);
+      }
+    );
   }
 
 

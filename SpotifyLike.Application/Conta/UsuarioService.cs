@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SpotifyLike.Application.Conta.Dto;
+using SpotifyLike.Application.Streaming.Dto;
 using SpotifyLike.Domain.Conta.Aggregates;
 using SpotifyLike.Domain.Core.Extension;
 using SpotifyLike.Domain.Streaming.Aggregates;
@@ -66,20 +67,32 @@ namespace SpotifyLike.Application.Conta
             return result;
         }
 
-        public UsuarioDto Favoritar(Guid idMusica, Guid idUsuario)
+        private Musica MusicaDtoParaMusica(MusicaDto musicaDto)
+        {
+            Musica musica = new Musica();
+            musica.Id = musicaDto.Id;
+            musica.Nome = musicaDto.Nome;
+            musica.Duracao = musicaDto.Duracao;
+
+            return musica;
+        }
+
+        public UsuarioDto Favoritar(MusicaDto musicaDto, Guid idUsuario)
         {
             var usuario = this.UsuarioRepository.GetById(idUsuario);
-            var musica = BandaRepository
+            var musica = MusicaDtoParaMusica(musicaDto);
             //Criar a transformação de musicaDto pra Musica aí declarar a musica e usar ela no adicionar musica
             if (usuario.Playlists.Any(playlist => playlist.Favorita 
-                    && playlist.Musicas.Any(m => m.Id == idMusica))) 
+                    && playlist.Musicas.Any(m => m.Id == musica.Id))) 
             {
                 return this.Mapper.Map<UsuarioDto>(usuario);
             }
             else 
             {
-                usuario.Playlists.FirstOrDefault(playlist  => playlist.Favorita)
-                    .AdicionarMusica(idMusica)
+                usuario.Playlists.FirstOrDefault(playlist => playlist.Favorita)
+                    .AdicionarMusica(musica);
+                this.UsuarioRepository.Update(usuario);
+                return this.Mapper.Map<UsuarioDto>(usuario);
             };
         }
     }

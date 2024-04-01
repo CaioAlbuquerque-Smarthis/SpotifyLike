@@ -62,10 +62,13 @@ namespace SpotifyLike.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("favoritar/{idMusica}")]
+        [HttpPost("favoritar/{idUsuario}")]
         public IActionResult Favoritar([FromBody] MusicaDto musicaDto, Guid idUsuario) 
         {
-            return 
+            if (ModelState.IsValid == false)
+                return BadRequest();
+            var result = this._usuarioService.Favoritar(musicaDto, idUsuario);
+            return Ok(result);
         }
 
     }

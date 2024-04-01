@@ -14,7 +14,7 @@
         </mat-expansion-panel-header>
         <div *ngFor="let music of album.musicas">
             <p>Musica: {{music.nome}}</p>
-            <button mat-icon-button color="primary" (click)="favoritar(music.id ?? '')">
+            <button mat-icon-button color="primary" (click)="favoritar(music.id ?? '', music.nome ?? '', music.duracao ?? '')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

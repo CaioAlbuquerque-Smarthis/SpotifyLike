@@ -9,7 +9,7 @@ namespace SpotifyLike.Application.Streaming.Dto
 {
     public class MusicaDto
     {
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public Duracao Duracao { get; set; }
     }

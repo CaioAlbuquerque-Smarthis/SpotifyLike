@@ -18,4 +18,16 @@ export class UsuarioService {
       senha:senha
     });
   }
+
+  public favoritar(idMusica: string, nomeMusica: String, duracaoMusica: string, idUsuario: string) : Observable<Usuario>
+  {
+    return this.http.post<Usuario>(`${this.url}/Favoritar/${idUsuario}`,{
+      id:idMusica,
+      nome:nomeMusica,
+      duracao: 
+      {
+        valor:duracaoMusica
+      }
+    });
+  }
 }
