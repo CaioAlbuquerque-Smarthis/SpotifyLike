@@ -71,5 +71,16 @@ namespace SpotifyLike.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("favoritas/{id}")]
+        public IActionResult ObterFavoritas(Guid id)
+        {
+            var result = this._usuarioService.ObterFavoritas(id);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+
+        }
     }
 }

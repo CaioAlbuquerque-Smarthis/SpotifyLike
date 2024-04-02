@@ -7,7 +7,7 @@
     background-size: cover;
   }
   .spacer {
-    margin-top: 20px; /* ou qualquer outro valor que você deseja */
+    margin-top: 20px;
   }
   .example-form {
     min-width: 150px;
@@ -16,5 +16,9 @@
   }
   
   .example-full-width {
-    width: 100%;
+    width: 60%;
+  }
+
+  .botao-busca {
+    margin-right: 260px;
   }
