@@ -42,4 +42,9 @@ export class HomeComponent implements OnInit {
 
         this.router.navigate(["busca", this.searchText]);
   };
+
+  public goToFavoritas(){
+
+    this.router.navigate(["/favoritas"]);
+};
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../model/usuario';
+import { Musica } from '../model/album';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,10 @@ export class UsuarioService {
         valor:duracaoMusica
       }
     });
+  }
+
+  public getPlaylistFavoritas(idUsuario: string) : Observable<Musica[]>
+  {
+    return this.http.get<Musica[]>(`${this.url}/favoritas/${idUsuario}`)
   }
 }

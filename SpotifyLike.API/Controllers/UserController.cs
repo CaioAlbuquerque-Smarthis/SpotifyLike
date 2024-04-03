@@ -76,7 +76,7 @@ namespace SpotifyLike.Api.Controllers
         {
             var result = this._usuarioService.ObterFavoritas(id);
 
-            if (result == null)
+            if (result == null) 
                 return NotFound();
 
             return Ok(result);

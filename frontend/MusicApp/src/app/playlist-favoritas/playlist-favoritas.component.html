@@ -1,0 +1,9 @@
+<mat-accordion class="accordion-container">
+    <mat-expansion-panel hideToggle *ngFor="let musica of musicas" class="expansion-panel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+               {{musica.nome}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+</mat-accordion>

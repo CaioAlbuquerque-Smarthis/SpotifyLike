@@ -1,5 +1,6 @@
-<div class="example-container" style = "margin-left: 15px;">
-    <span *ngIf="errorMessage">{{errorMessage}};</span>
+<div class="example-container" style = "margin-left: 0px; margin-top: -300px;">
+    <span *ngIf="errorMessage" style="color: red;">{{errorMessage}}</span>
+    <br>
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput
@@ -8,6 +9,7 @@
              required>
         <mat-error *ngIf="email.invalid">Email inválido</mat-error>
     </mat-form-field>
+    <br>
     <mat-form-field>
         <mat-label>Senha</mat-label>
         <input matInput
