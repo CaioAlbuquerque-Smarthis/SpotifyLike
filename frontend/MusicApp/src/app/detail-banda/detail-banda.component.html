@@ -5,6 +5,7 @@
     <img class= "banda-imagem" [src]="banda.backdrop">
 </div>
 
+<div class="accordion-container">
 <mat-accordion >
     <mat-expansion-panel hideToggle *ngFor="let album of albuns" >
         <mat-expansion-panel-header>
@@ -20,3 +21,4 @@
         </div>
     </mat-expansion-panel>
 </mat-accordion>
+</div>

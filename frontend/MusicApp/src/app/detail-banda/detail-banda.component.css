@@ -1,4 +1,9 @@
 .banda-imagem {
-    max-width: 400px; /* Define a largura máxima da imagem */
-    height: 400px; /* Garante que a altura seja ajustada proporcionalmente */
+    max-width: 50%; /* Define a largura máxima da imagem */
+    height: 50%; /* Garante que a altura seja ajustada proporcionalmente */
+}
+
+.accordion-container {
+    max-height: 50%; /* Define a altura máxima */
+    overflow-y: auto; /* Permite a rolagem vertical */
 }
