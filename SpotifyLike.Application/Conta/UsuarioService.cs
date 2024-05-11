@@ -6,12 +6,7 @@ using SpotifyLike.Domain.Core.Extension;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Aggregates;
 using SpotifyLike.Repository.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SpotifyLike.Application.Conta
 {
