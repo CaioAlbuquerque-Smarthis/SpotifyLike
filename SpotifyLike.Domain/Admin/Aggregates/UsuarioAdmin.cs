@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpotifyLike.Domain.Admin.Aggregates
 {
-    public class UsuarioAdministrador
+    public class UsuarioAdmin
     {
         public Guid Id { get; set; }
         public String Nome { get; set; }

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SpotifyLike.Repository.Mapping.Admin
 {
-    public class UsuarioAdministradorMapping : IEntityTypeConfiguration<UsuarioAdministrador>
+    public class UsuarioAdministradorMapping : IEntityTypeConfiguration<UsuarioAdmin>
     {
-        public void Configure(EntityTypeBuilder<UsuarioAdministrador> builder)
+        public void Configure(EntityTypeBuilder<UsuarioAdmin> builder)
         {
-            builder.ToTable(nameof(UsuarioAdministrador));
+            builder.ToTable(nameof(UsuarioAdmin));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();

@@ -14,12 +14,12 @@ using SpotifyLike.Repository.Mapping.Admin;
 
 namespace SpotifyLike.Repository
 {
-    public class SpotifyLikeAdministradorContext : DbContext
+    public class SpotifyLikeAdminContext : DbContext
     {
-        public DbSet<UsuarioAdministrador> UsuarioAdministradores { get; set; }
+        public DbSet<UsuarioAdmin> UsuarioAdministradores { get; set; }
 
 
-        public SpotifyLikeAdministradorContext(DbContextOptions<SpotifyLikeAdministradorContext> options) : base(options)
+        public SpotifyLikeAdminContext(DbContextOptions<SpotifyLikeAdminContext> options) : base(options)
         {
             
         }

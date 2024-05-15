@@ -12,7 +12,7 @@ namespace SpotifyLike.Repository.MigrationsAdmin
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UsuarioAdministrador",
+                name: "UsuarioAdmin",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -23,7 +23,7 @@ namespace SpotifyLike.Repository.MigrationsAdmin
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsuarioAdministrador", x => x.Id);
+                    table.PrimaryKey("PK_UsuarioAdmin", x => x.Id);
                 });
         }
 
@@ -31,7 +31,7 @@ namespace SpotifyLike.Repository.MigrationsAdmin
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UsuarioAdministrador");
+                name: "UsuarioAdmin");
         }
     }
 }

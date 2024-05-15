@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpotifyLike.Repository;
 
@@ -11,12 +10,10 @@ using SpotifyLike.Repository;
 
 namespace SpotifyLike.Repository.MigrationsAdmin
 {
-    [DbContext(typeof(SpotifyLikeAdministradorContext))]
-    [Migration("20240511142700_InitialAdmin")]
-    partial class InitialAdmin
+    [DbContext(typeof(SpotifyLikeAdminContext))]
+    partial class SpotifyLikeAdminContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +25,7 @@ namespace SpotifyLike.Repository.MigrationsAdmin
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SpotifyLike.Domain.Admin.Aggregates.UsuarioAdministrador", b =>
+            modelBuilder.Entity("SpotifyLike.Domain.Admin.Aggregates.UsuarioAdmin", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +48,7 @@ namespace SpotifyLike.Repository.MigrationsAdmin
 
                     b.HasKey("Id");
 
-                    b.ToTable("UsuarioAdministrador", (string)null);
+                    b.ToTable("UsuarioAdmin", (string)null);
                 });
 #pragma warning restore 612, 618
         }

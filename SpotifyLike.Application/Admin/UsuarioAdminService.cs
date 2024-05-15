@@ -27,7 +27,7 @@ namespace SpotifyLike.Application.Admin
         }
         public void Salvar(UsuarioAdminDto dto) 
         {
-            var usuario = this.mapper.Map<UsuarioAdministrador>(dto);
+            var usuario = this.mapper.Map<UsuarioAdmin>(dto);
             usuario.CriptografarSenha();
             this.Repository.Save(usuario);
         }

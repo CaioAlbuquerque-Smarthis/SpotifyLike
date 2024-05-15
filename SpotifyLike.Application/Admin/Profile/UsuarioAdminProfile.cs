@@ -12,7 +12,7 @@ namespace SpotifyLike.Application.Admin.Profile
     {
         public UsuarioAdminProfile() 
         {
-            CreateMap<UsuarioAdminDto, UsuarioAdministrador>()
+            CreateMap<UsuarioAdminDto, UsuarioAdmin>()
                 .ForMember(x => x.Perfil, m => m.MapFrom(f => (Perfil)f.Perfil))
                 .ReverseMap();
         }

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<SpotifyLikeAdministradorContext>(c =>
+builder.Services.AddDbContext<SpotifyLikeAdminContext>(c =>
 {
     c.UseLazyLoadingProxies()
      .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnectionAdmin"));
