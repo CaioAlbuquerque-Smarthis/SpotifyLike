@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace SpotifyLike.STS.Data
 {
-    public class IdentityRepository
+    public class IdentityRepository : IIdentityRepository
     {
         private readonly string connectionString;
 
@@ -15,7 +15,7 @@ namespace SpotifyLike.STS.Data
         }
         public async Task<Usuario> FindByIdAsync(Guid id)
         {
-            using(var connection = new SqlConnection(this.connectionString)) 
+            using (var connection = new SqlConnection(this.connectionString))
             {
                 var user = await connection.QueryFirstAsync<Usuario>(IdentityQuery.FindById(), new
                 {
@@ -25,11 +25,11 @@ namespace SpotifyLike.STS.Data
                 return user;
             }
         }
-        public async Task<Usuario> FindByEmailAndPassword(string email, string password)
+        public async Task<Usuario> FindByEmailAndPasswordAsync(string email, string password)
         {
             using (var connection = new SqlConnection(this.connectionString))
             {
-                var user = await connection.QueryFirstAsync<Usuario>(IdentityQuery.FindByEmailAndPassword(), new
+                var user = await connection.QueryFirstOrDefaultAsync<Usuario>(IdentityQuery.FindByEmailAndPassword(), new
                 {
                     email = email,
                     senha = password
