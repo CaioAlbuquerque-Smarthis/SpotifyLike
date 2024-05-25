@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpotifyLike.Repository.Mapping.Admin
 {
-    public class UsuarioAdministradorMapping : IEntityTypeConfiguration<UsuarioAdmin>
+    public class UsuarioAdminMapping : IEntityTypeConfiguration<UsuarioAdmin>
     {
         public void Configure(EntityTypeBuilder<UsuarioAdmin> builder)
         {

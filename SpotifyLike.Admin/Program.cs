@@ -19,7 +19,7 @@ builder.Services.AddDbContext<SpotifyLikeAdminContext>(c =>
 
 builder.Services.AddAutoMapper(typeof(UsuarioAdminProfile).Assembly);
 
-builder.Services.AddScoped<UsuarioAdministradorRepository>();
+builder.Services.AddScoped<UsuarioAdminRepository>();
 builder.Services.AddScoped<UsuarioAdminService>();
 
 var app = builder.Build();

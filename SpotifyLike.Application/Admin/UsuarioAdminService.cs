@@ -12,9 +12,9 @@ namespace SpotifyLike.Application.Admin
 {
     public class UsuarioAdminService
     {
-        private UsuarioAdministradorRepository Repository { get; set; }
+        private UsuarioAdminRepository Repository { get; set; }
         private IMapper mapper { get; set; }
-        public UsuarioAdminService(UsuarioAdministradorRepository repository, IMapper mapper)
+        public UsuarioAdminService(UsuarioAdminRepository repository, IMapper mapper)
         {
             Repository = repository;
             this.mapper = mapper;

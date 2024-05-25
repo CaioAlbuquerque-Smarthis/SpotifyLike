@@ -27,7 +27,7 @@ namespace SpotifyLike.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.ApplyConfiguration(new UsuarioAdministradorMapping());
+            modelBuilder.ApplyConfiguration(new UsuarioAdminMapping());
 
             base.OnModelCreating(modelBuilder);
         }

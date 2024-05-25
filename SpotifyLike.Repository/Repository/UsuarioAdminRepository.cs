@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SpotifyLike.Repository.Repository
 {
-    public class UsuarioAdministradorRepository : RepositoryBase<UsuarioAdmin>
+    public class UsuarioAdminRepository : RepositoryBase<UsuarioAdmin>
     {
-        public UsuarioAdministradorRepository(SpotifyLikeAdminContext context) : base(context)
+        public UsuarioAdminRepository(SpotifyLikeAdminContext context) : base(context)
         {
         }
     }
