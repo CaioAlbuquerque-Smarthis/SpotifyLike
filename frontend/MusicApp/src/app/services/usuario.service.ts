@@ -9,7 +9,7 @@ import { Musica } from '../model/album';
 })
 export class UsuarioService {
 
-  private url = "https://localhost:7004/api/user"
+  private url = "https://localhost:5086/api/user"
 
   constructor(private http: HttpClient) { }
 

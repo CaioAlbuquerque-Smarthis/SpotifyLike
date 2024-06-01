@@ -20,7 +20,7 @@ namespace SpotifyLike.STS.GrantType
             var password = context.Password;
             var email = context.UserName;
 
-            var user = await this.repository.FindByEmailAndPasswordAsync(email, password);
+            var user = await this.repository.FindByEmailAndPasswordAsync(email, HashSHA256(password));
 
             if (user is not null)
             {

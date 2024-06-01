@@ -28,7 +28,7 @@ builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 builder.Services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "https://localhost:7081";
+                    options.Authority = "https://localhost:7064";
                     options.ApiName = "spotifyLike-api";
                     options.ApiSecret = "SpolitifyLikeSecret";
                     options.RequireHttpsMetadata = true;
