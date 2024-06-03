@@ -19,7 +19,7 @@ namespace SpotifyLike.STS
         {
             return new List<ApiResource>
             {
-                new ApiResource("SpotifyLike-api", "SpotifyLike", new string[] { "spotifyLike-user" })
+                new ApiResource("spotifyLike-api", "SpotifyLike", new string[] { "spotifyLike-user" })
                 {
                     ApiSecrets =
                     {
@@ -40,7 +40,7 @@ namespace SpotifyLike.STS
                 {
                     Name = "SpotifyLikeScope",
                     DisplayName = "SpotifyLike API",
-                    UserClaims =  { "spotifyLike-user"}
+                    UserClaims =  { "spotifylike-user"}
                 }
             };
         }
@@ -51,7 +51,7 @@ namespace SpotifyLike.STS
                 new Client()
                 {
                     ClientId = "client-angular-spotify",
-                    ClientName = "Acesso do front end as APIS",
+                    ClientName = "Acesso do front as APIS",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     ClientSecrets =
                     {
