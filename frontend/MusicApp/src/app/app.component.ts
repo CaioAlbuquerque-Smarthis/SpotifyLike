@@ -19,7 +19,7 @@ export class AppComponent {
   constructor( private router: Router){}
 
   public home(){
-    if (sessionStorage.getItem('user')){
+    if (sessionStorage.getItem("user_session")){
       this.router.navigate(["/home"]);
     }
     

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PlaylistFavoritasComponent implements OnInit {
 
-  idUsuario = JSON.parse(sessionStorage.getItem('user') || '{}').id;
+  idUsuario = JSON.parse(sessionStorage.getItem('user_session') as string).sub;
   musicas !: Musica[]
   constructor(private usuarioService: UsuarioService){}
 

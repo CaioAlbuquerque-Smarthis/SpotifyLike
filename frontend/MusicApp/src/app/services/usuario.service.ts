@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../model/usuario';
@@ -9,22 +9,26 @@ import { Musica } from '../model/album';
 })
 export class UsuarioService {
 
-  private url = "https://localhost:5086/connect/token"
+  private urlToken = "https://localhost:7064/connect/token"
+  private url = "https://localhost:7004/api/User"
 
   constructor(private http: HttpClient) { }
 
-  public autenticar(email:string, senha: string) : Observable<Usuario>{
+  public autenticar(email:string, senha: string) : Observable<any>{
 
     let body = new URLSearchParams();
     body.set("username", email);
     body.set("password", senha);
-    body.set
-    return this.http.post(`${this.url}`)
+    body.set("client_id", "client-angular-spotify");
+    body.set("client_secret", "SpotifyLikeSecret");
+    body.set("grant_type", "password");
+    body.set("scope", "SpotifyLikeScope");
 
-    return this.http.post<Usuario>(`${this.url}/login`,{
-      email:email,
-      senha:senha
-    });
+    let options = {
+      headers: new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded")
+    }
+    
+    return this.http.post(`${this.urlToken}`, body.toString(), options);
   }
 
   public favoritar(idMusica: string, nomeMusica: String, duracaoMusica: string, idUsuario: string) : Observable<Usuario>
@@ -36,11 +40,22 @@ export class UsuarioService {
       {
         valor:duracaoMusica
       }
-    });
+    }, this.setAuthenticationHeader());
   }
 
   public getPlaylistFavoritas(idUsuario: string) : Observable<Musica[]>
   {
-    return this.http.get<Musica[]>(`${this.url}/favoritas/${idUsuario}`)
+    return this.http.get<Musica[]>(`${this.url}/favoritas/${idUsuario}`, this.setAuthenticationHeader())
+  }
+
+  private setAuthenticationHeader() {
+
+    let access_token = sessionStorage.getItem("access_token");
+
+    let options = {
+      headers: new HttpHeaders().set("Authorization", `Bearer ${access_token}`)
+    }
+
+    return options;
   }
 }
