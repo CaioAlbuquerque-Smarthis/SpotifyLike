@@ -9,11 +9,18 @@ import { Musica } from '../model/album';
 })
 export class UsuarioService {
 
-  private url = "https://localhost:5086/api/user"
+  private url = "https://localhost:5086/connect/token"
 
   constructor(private http: HttpClient) { }
 
-  public autenticar(email:String, senha: String) : Observable<Usuario>{
+  public autenticar(email:string, senha: string) : Observable<Usuario>{
+
+    let body = new URLSearchParams();
+    body.set("username", email);
+    body.set("password", senha);
+    body.set
+    return this.http.post(`${this.url}`)
+
     return this.http.post<Usuario>(`${this.url}/login`,{
       email:email,
       senha:senha

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpotifyLike.Application.Admin;
 using SpotifyLike.Application.Admin.Dto;
 
 namespace SpotifyLike.Admin.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private UsuarioAdminService usuarioAdministradorService;
@@ -18,11 +20,13 @@ namespace SpotifyLike.Admin.Controllers
             return View(result);
         }
 
+        [AllowAnonymous]
         public IActionResult Criar()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Salvar(UsuarioAdminDto dto)
         {
