@@ -1,0 +1,32 @@
+﻿@model SpotifyLike.Application.Streaming.Dto.BandaDto;
+
+
+<form method="post" asp-controller="User" asp-action="Salvar">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Nome"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Descrição</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Descricao"></span>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Backdrop</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Backdrop, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Backdrop"></span>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>

@@ -37,7 +37,7 @@ namespace SpotifyLike.Repository
         public IEnumerable<T> GetAll()
         {
             return this.Context.Set<T>().ToList();
-        }
+        }   
 
         public T GetById(Guid id)
         {

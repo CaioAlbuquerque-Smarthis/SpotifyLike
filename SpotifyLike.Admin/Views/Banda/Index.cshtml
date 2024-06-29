@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SpotifyLike.Application.Streaming.Dto.BandaDto>
+
+<div>
+    <a class="btn btn-primary" role="button" href="/User/Criar">Criar Usuário</a>
+</div>
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Descrição</td>
+                <td>Backdrop</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Descricao</td>
+                    <td>@item.Backdrop</td>
+                    <td></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
