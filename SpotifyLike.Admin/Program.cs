@@ -5,6 +5,8 @@ using SpotifyLike.Application.Admin;
 using SpotifyLike.Repository.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Spotify.Application.Streaming;
+using SpotifyLike.Application.Streaming;
+using Spotify.Application.Streaming.Profile;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,10 +30,14 @@ builder.Services.AddDbContext<SpotifyLikeContext>(c =>
 
 builder.Services.AddAutoMapper(typeof(UsuarioAdminProfile).Assembly);
 
+builder.Services.AddAutoMapper(typeof(MusicaProfile));
+
 builder.Services.AddScoped<UsuarioAdminRepository>();
 builder.Services.AddScoped<UsuarioAdminService>();
 builder.Services.AddScoped<BandaRepository>();
 builder.Services.AddScoped<BandaService>();
+builder.Services.AddScoped<MusicaRepository>();
+builder.Services.AddScoped<MusicaService>();
 
 builder.Services.AddAuthentication(options =>
 {

@@ -3,13 +3,12 @@ using SpotifyLike.Domain.Streaming.Aggregates;
 
 namespace Spotify.Application.Streaming.Profile
 {
-    public class BandaProfile : AutoMapper.Profile
+    public class MusicaProfile : AutoMapper.Profile
     {
-        public BandaProfile()
+        public MusicaProfile()
         {
-            CreateMap<BandaDto, Banda>()
+            CreateMap<MusicaDto, Musica>()
                 .ReverseMap();
         }
     }
 }
-

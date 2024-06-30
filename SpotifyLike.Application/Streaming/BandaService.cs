@@ -149,7 +149,5 @@ namespace Spotify.Application.Streaming
             return dto;
         }
 
-
-
     }
 }
