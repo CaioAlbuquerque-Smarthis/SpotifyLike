@@ -1,0 +1,45 @@
+﻿@model MusicaViewModel;
+
+
+<form method="post" asp-controller="Musica" asp-action="Salvar">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Banda</label>
+        <div class="col-sm-10">
+            <select class="form-select" asp-for="Bandas" style="height: 50px;">
+                <option selected value="">Selecione</option>
+                @foreach (var item in Model.Bandas)
+                {
+                    <option value=@item.Id>@item.Nome</option>
+                }
+            </select>
+            <span class="form-field-invalid" asp-validation-for="Bandas"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nome do Album</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.NomeAlbum, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="NomeAlbum"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.MusicaDto.Nome, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="MusicaDto.Nome"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Duração</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.MusicaDto.Duracao.Valor, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="MusicaDto.Duracao.Valor"></span>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>
