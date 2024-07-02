@@ -116,7 +116,7 @@ namespace Spotify.Application.Streaming
                 Nome = dto.Nome
             };
 
-            foreach (MusicDto item in dto.Musicas)
+            foreach (MusicaDto item in dto.Musicas)
             {
                 album.AdicionarMusica(new Musica
                 {
@@ -136,7 +136,7 @@ namespace Spotify.Application.Streaming
 
             foreach (var item in album.Musica)
             {
-                var musicaDto = new MusicDto()
+                var musicaDto = new MusicaDto()
                 {
                     Id = item.Id,
                     Duracao = item.Duracao.Valor,

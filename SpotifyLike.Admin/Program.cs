@@ -38,6 +38,8 @@ builder.Services.AddScoped<BandaRepository>();
 builder.Services.AddScoped<BandaService>();
 builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<MusicaService>();
+builder.Services.AddScoped<AlbumRepository>();
+builder.Services.AddScoped<AlbumService>();
 
 builder.Services.AddAuthentication(options =>
 {

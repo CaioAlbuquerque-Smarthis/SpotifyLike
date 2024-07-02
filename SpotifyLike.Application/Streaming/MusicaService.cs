@@ -25,5 +25,10 @@ namespace SpotifyLike.Application.Streaming
             var musica = this.MusicaRepository.GetAll();
             return this.Mapper.Map<IEnumerable<MusicaDto>>(musica);
         }
+
+        public void AdicionarEmAlbum(Guid IdAlbum, MusicaDto musicaDto)
+        {
+
+        }
     }
 }
