@@ -30,5 +30,20 @@ namespace SpotifyLike.Admin.Controllers
             };
             return View(result);
         }
+
+        public IActionResult Salvar(AlbumViewModel albumViewModel)
+        {
+            ModelState.Remove("Bandas");
+            if (ModelState.IsValid == false)
+            {
+                albumViewModel.Bandas = this.bandaService.Obter();
+                return View("Criar", albumViewModel);
+            }
+
+            this.bandaService.AssociarAlbum(albumViewModel.AlbumDto);
+
+            return RedirectToAction("Index");
+
+        }
     }
 }
