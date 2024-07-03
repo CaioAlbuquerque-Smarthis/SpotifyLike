@@ -12,5 +12,10 @@ namespace SpotifyLike.Application.Streaming.Dto
         public Guid Id { get; set; }
         public string Nome { get; set; }
         public Duracao Duracao { get; set; }
+
+        public MusicaDto()
+        {
+            Duracao = new Duracao(0); 
+        }
     }
 }

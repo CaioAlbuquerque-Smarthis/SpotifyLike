@@ -10,12 +10,12 @@ namespace SpotifyLike.Admin.Controllers
     public class MusicaController : Controller
     {
         private MusicaService musicaService;
-        private BandaService bandaService;
+        private AlbumService albumService;
 
-        public MusicaController(MusicaService musicaService, BandaService bandaService) 
+        public MusicaController(MusicaService musicaService, AlbumService albumService) 
         {
             this.musicaService = musicaService;
-            this.bandaService = bandaService;
+            this.albumService = albumService;
         }
         public IActionResult Index()
         {
@@ -25,36 +25,24 @@ namespace SpotifyLike.Admin.Controllers
 
         public IActionResult Criar()
         {
-            var bandas = this.bandaService.Obter();
+            var albuns = this.albumService.Obter();
             var result = new MusicaViewModel
             {
-                Bandas = bandas
+                Albuns = albuns
             };
             return View(result);
         }
         public IActionResult Salvar(MusicaViewModel musicaViewModel)
         {
+            ModelState.Remove("Albuns");
             if (ModelState.IsValid == false)
-                return View("Criar");
-
-
-            var albumDto = this.bandaService.ObterAlbum(musicaViewModel.BandaId)
-                                         .Find(x => x.Nome.Equals(musicaViewModel.NomeAlbum));
-
-            if (albumDto  == null)
             {
-                var createdAlbumDto = new AlbumDto
-                {
-                    BandaId = musicaViewModel.BandaId,
-                    Nome = musicaViewModel.NomeAlbum,
-                    Musicas = new List<MusicaDto> { musicaViewModel.MusicaDto }
-                };
-                bandaService.AssociarAlbum(createdAlbumDto);
+                musicaViewModel.Albuns = this.albumService.Obter();
+                return View("Criar", musicaViewModel);
             }
-            else 
-            {
 
-            }
+            this.albumService.AssociarMusica(musicaViewModel.MusicaDto, musicaViewModel.AlbumId);
+            
             return RedirectToAction("Index");
         }
     }
