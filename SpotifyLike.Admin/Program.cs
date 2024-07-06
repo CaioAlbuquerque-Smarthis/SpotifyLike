@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Spotify.Application.Streaming;
 using SpotifyLike.Application.Streaming;
 using Spotify.Application.Streaming.Profile;
+using SpotifyLike.Application.Conta;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +41,9 @@ builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<MusicaService>();
 builder.Services.AddScoped<AlbumRepository>();
 builder.Services.AddScoped<AlbumService>();
+builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<PlanoRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

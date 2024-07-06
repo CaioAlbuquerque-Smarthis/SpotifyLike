@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SpotifyLike.Application.Conta.Dto;
 using SpotifyLike.Application.Streaming.Dto;
 using SpotifyLike.Domain.Conta.Aggregates;
@@ -105,6 +106,48 @@ namespace SpotifyLike.Application.Conta
             var usuario = this.UsuarioRepository.GetById(id);
             var musicas = usuario.Playlists.FirstOrDefault(playlist => playlist.Favorita).Musicas;
             return musicas.Select(musica => MusicaParaMusicaDto(musica));
+        }
+
+        public IEnumerable<UsuarioDto> Obter()
+        {
+            var usuario = this.UsuarioRepository.GetAll();
+            return this.Mapper.Map<IEnumerable<UsuarioDto>>(usuario);
+        }
+
+        public IEnumerable<MusicaRelatorioDto> GerarRelatorioMusicasFavoritas()
+        {
+            // Obter todos os usuários com suas playlists favoritas
+            var usuarios = this.UsuarioRepository.GetAll();
+
+            // Criar um dicionário para contar as ocorrências das músicas
+            var musicaContagem = new Dictionary<Guid, MusicaRelatorioDto>();
+
+            foreach (var usuario in usuarios)
+            {
+                var playlistFavoritaDto = this.ObterFavoritas(usuario.Id);
+
+                if (playlistFavoritaDto != null)
+                {
+                    foreach (var musica in playlistFavoritaDto)
+                    {
+                        if (musicaContagem.ContainsKey(musica.Id))
+                        {
+                            musicaContagem[musica.Id].QuantidadeCurtidas++;
+                        }
+                        else
+                        {
+                            musicaContagem[musica.Id] = new MusicaRelatorioDto
+                            {
+                                MusicaId = musica.Id,
+                                NomeMusica = musica.Nome,
+                                QuantidadeCurtidas = 1
+                            };
+                        }
+                    }
+                }
+            }
+
+            return musicaContagem.Values.OrderByDescending(m => m.QuantidadeCurtidas);
         }
     }
 }
