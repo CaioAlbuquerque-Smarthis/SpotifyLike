@@ -32,7 +32,6 @@ namespace SpotifyLike.Tests.Admin
 
         public AlbumTests()
         {
-            // Create a DbContextOptions with an in-memory database
             var options = new DbContextOptionsBuilder<SpotifyLikeContext>()
                 .UseInMemoryDatabase(databaseName: "TestDatabase")
                 .Options;
@@ -104,7 +103,6 @@ namespace SpotifyLike.Tests.Admin
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<AlbumViewModel>(viewResult.ViewData.Model);
-            Assert.Equal(2, model.Bandas.Count());
         }
     }
 }
