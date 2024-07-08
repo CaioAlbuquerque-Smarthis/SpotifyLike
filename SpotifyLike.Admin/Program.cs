@@ -44,6 +44,7 @@ builder.Services.AddScoped<AlbumService>();
 builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<PlanoRepository>();
+builder.Services.AddScoped<RelatorioBandaService>();
 
 builder.Services.AddAuthentication(options =>
 {

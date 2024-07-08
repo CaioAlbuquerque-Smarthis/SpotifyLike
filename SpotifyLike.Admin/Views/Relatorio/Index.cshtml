@@ -1,25 +1,7 @@
-﻿@model IEnumerable<SpotifyLike.Application.Conta.Dto.MusicaRelatorioDto>
-
+﻿
 <div>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Nome</td>
-                <td>Quantidade de Curtidas</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.MusicaId</td>
-                    <td>@item.NomeMusica</td>
-                    <td>@item.QuantidadeCurtidas</td>
-                    <td></td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
+    <a class="btn btn-primary mb-3" role="button" href="/Relatorio/RelatorioMusica">Relatório de Músicas</a>
+</div>
+<div>
+    <a class="btn btn-primary mb-3" role="button" href="/Relatorio/RelatorioBanda">Relatório de Bandas</a>
 </div>

@@ -42,6 +42,15 @@ namespace Spotify.Application.Streaming
             return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
         }
 
+        public BandaDto BuscarPorMusicaId(Guid musicaId)
+        {
+            var banda = this.BandaRepository.GetAll()
+                                                    .FirstOrDefault(x => x.Albums
+                                                        .Any(y => y.Musica
+                                                            .Any(z => z.Id == musicaId)));
+            return this.Mapper.Map<BandaDto>(banda);
+        }
+
         public IEnumerable<BandaDto> Obter()
         {
             var banda = this.BandaRepository.GetAll();

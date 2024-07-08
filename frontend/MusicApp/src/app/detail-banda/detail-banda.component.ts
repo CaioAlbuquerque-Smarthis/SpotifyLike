@@ -22,7 +22,7 @@ export class DetailBandaComponent implements OnInit {
   idBanda = '';
   banda !: Banda;
   albuns !: Album[];
-  idUsuario = JSON.parse(sessionStorage.getItem('user') || '{}').id;
+  idUsuario = JSON.parse(sessionStorage.getItem('user_session') as string).sub;
 
   constructor(private route: ActivatedRoute, private bandaService: BandaService, private usuarioService: UsuarioService){}
 

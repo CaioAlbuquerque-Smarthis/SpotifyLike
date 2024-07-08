@@ -9,7 +9,7 @@ namespace SpotifyLike.Application.Conta.Dto
     public class MusicaRelatorioDto
     {
         public Guid MusicaId { get; set; }
-        public string NomeMusica { get; set; }
+        public String NomeMusica { get; set; }
         public int QuantidadeCurtidas { get; set; }
     }
 }

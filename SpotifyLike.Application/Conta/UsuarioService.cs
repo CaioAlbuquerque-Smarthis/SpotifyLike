@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using SpotifyLike.Application.Admin.Dto;
 using SpotifyLike.Application.Conta.Dto;
 using SpotifyLike.Application.Streaming.Dto;
 using SpotifyLike.Domain.Conta.Aggregates;
