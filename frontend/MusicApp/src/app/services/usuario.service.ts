@@ -36,10 +36,11 @@ export class UsuarioService {
     return this.http.post<Usuario>(`${this.url}/Favoritar/${idUsuario}`,{
       id:idMusica,
       nome:nomeMusica,
-      duracao: 
+      /*duracao: 
       {
         valor:duracaoMusica
-      }
+      }*/
+      duracao: duracaoMusica
     }, this.setAuthenticationHeader());
   }
 

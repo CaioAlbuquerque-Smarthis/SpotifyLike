@@ -95,6 +95,17 @@ namespace SpotifyLike.Tests.Admin
         }
 
         [Fact]
+        public void Criar_ReturnsViewResult_IEnumerableBandaRelatorioDto()
+        {
+            // Act
+            var result = _controller.RelatorioBanda();
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<IEnumerable<BandaRelatorioDto>>(viewResult.ViewData.Model);
+        }
+
+        [Fact]
         public void Index_ReturnsViewResult()
         {
             // Act
@@ -115,16 +126,7 @@ namespace SpotifyLike.Tests.Admin
             var model = Assert.IsAssignableFrom<IEnumerable<MusicaRelatorioDto>>(viewResult.ViewData.Model);
         }
 
-        [Fact]
-        public void Criar_ReturnsViewResult_IEnumerableBandaRelatorioDto()
-        {
-            // Act
-            var result = _controller.RelatorioBanda();
-
-            // Assert
-            var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<IEnumerable<BandaRelatorioDto>>(viewResult.ViewData.Model);
-        }
+        
     }
 
 }

@@ -105,6 +105,9 @@ namespace SpotifyLike.Application.Conta
         public IEnumerable<MusicaDto> ObterFavoritas(Guid id)
         {
             var usuario = this.UsuarioRepository.GetById(id);
+            var playlistFavorita = usuario.Playlists.FirstOrDefault(playlist => playlist.Favorita == true);
+            if (playlistFavorita == null)
+                return null;
             var musicas = usuario.Playlists.FirstOrDefault(playlist => playlist.Favorita).Musicas;
             return musicas.Select(musica => MusicaParaMusicaDto(musica));
         }
